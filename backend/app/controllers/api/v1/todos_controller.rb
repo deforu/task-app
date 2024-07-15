@@ -23,6 +23,15 @@ class Api::V1::TodosController < ApplicationController
     end
   end
 
+  def show
+    todo = Todo.find(params[:id])
+    if todo
+      render json: { status: 200, todo: todo }
+    else
+      render json: { status: 404, message: "Todoが見つかりません" }
+    end
+  end
+
   private
 
     def todo_params
